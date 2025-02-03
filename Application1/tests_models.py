@@ -22,3 +22,8 @@ class StoreItemTest(TestCase):
     def test_create_store_too_long_names(self):
         with self.assertRaises(IntegrityError):
             Store.objects.create(store_name='a'*100)
+
+
+    def test_length_name_store(self):
+        store = Store.objects.create(store_name='a' * 15)
+        self.assertEquals(store.length_name(), 15)
